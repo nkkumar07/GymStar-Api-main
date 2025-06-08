@@ -11,6 +11,11 @@ Base.metadata.create_all(bind=engine)
 # Initialize FastAPI app
 app = FastAPI()
 
+# Root endpoint for health check or welcome message
+@app.get("/")
+async def root():
+    return {"message": "Welcome to GymStar API"}
+
 # Serve static files
 app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")  # Serve images
 
